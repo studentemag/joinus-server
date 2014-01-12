@@ -1,13 +1,9 @@
 package hello;
 
-import java.util.List;
-
 import javax.sql.DataSource;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -59,7 +55,7 @@ public class Application {
         return new JpaTransactionManager();
     }
 
-
+    /*
     public static void main(String[] args) {
         AbstractApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
         EventRepository repository = context.getBean(EventRepository.class);
@@ -94,5 +90,6 @@ public class Application {
 
         context.close();
     }
+    */
 
 }
