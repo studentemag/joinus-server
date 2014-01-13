@@ -1,4 +1,4 @@
-package hello;
+package mag.joinus.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

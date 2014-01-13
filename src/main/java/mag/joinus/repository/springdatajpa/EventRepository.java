@@ -1,6 +1,9 @@
-package hello;
+package mag.joinus.repository.springdatajpa;
+
 
 import java.util.List;
+
+import mag.joinus.model.Event;
 
 import org.springframework.data.repository.CrudRepository;
 
