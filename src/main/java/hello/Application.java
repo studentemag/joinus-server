@@ -1,5 +1,7 @@
 package hello;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -18,9 +20,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class Application {
     
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
-	private static final String PROPERTY_NAME_DATABASE_PASSWORD = "";
+	private static final String PROPERTY_NAME_DATABASE_PASSWORD = "joinus";
 	private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/joinus";
-	private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
+	private static final String PROPERTY_NAME_DATABASE_USERNAME = "joinus";
 
     @Bean
     public DataSource dataSource() {
@@ -36,6 +38,11 @@ public class Application {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
         LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
         lef.setDataSource(dataSource);
+        
+        Properties props = new Properties();
+        props.put("hibernate.hbm2ddl.import_files", "/import.sql");
+        lef.setJpaProperties(props);
+        
         lef.setJpaVendorAdapter(jpaVendorAdapter);
         lef.setPackagesToScan("hello");
         return lef;

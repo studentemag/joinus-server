@@ -18,6 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @EnableAutoConfiguration
 public class EventService {
 	
+	public EventService(){
+		super();
+		System.out.println("Costruttore chiamato");
+	}
+	
     @RequestMapping(value="/users/{userId}/events", method=RequestMethod.GET)
     public @ResponseBody List<Event> getUserEvents(
             @PathVariable String userId) {
