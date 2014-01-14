@@ -8,8 +8,6 @@ import mag.joinus.model.Event;
 import mag.joinus.service.JoinusService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,30 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@ComponentScan
-@EnableAutoConfiguration
 public class EventController {
-	JoinusService joinusService;
 	
 	@Autowired
-	public EventController(JoinusService joinusService){
+	JoinusService joinusService;
+	
+
+	public EventController(){
 		System.out.println("Inside EventController constructor");
-		this.joinusService=joinusService;
-		
-		/*
-		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
-        EventRepository repository = context.getBean(EventRepository.class);
-        
-        Iterable<Event> events = repository.findAll();
-        System.out.println("Events found with findAll():");
-        System.out.println("-------------------------------");
-        for (Event event : events) {
-            System.out.println(event);
-        }
-        System.out.println();
-        
-        context.close();
-		*/
 	}
 	
     @RequestMapping(value="/users/{userId}/events", method=RequestMethod.GET)

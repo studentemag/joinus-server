@@ -11,18 +11,22 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class JoinusServiceImpl implements JoinusService{
 
+	@Autowired
 	private EventRepository eventRepository;
 	
-	@Autowired
-	public JoinusServiceImpl(EventRepository eventRepository){
+
+	public JoinusServiceImpl(){
 		System.out.println("Inside JoinusServiceImpl constructor");
-		this.eventRepository=eventRepository;
 	}
 	
     @Override
     @Transactional
     public void saveEvent(Event event) throws DataAccessException {
         eventRepository.save(event);
+    }
+    
+    public String getPippo(){
+    	return "pippo";
     }
 	
 }
