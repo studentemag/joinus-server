@@ -8,7 +8,7 @@ CREATE TABLE Users (
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
-CREATE TABLE Events (
+CREATE TABLE Meetings (
 	id int AUTO_INCREMENT,
 	title varchar(10),
 	mocId varchar(10),
@@ -21,7 +21,7 @@ CREATE TABLE Participants (
 	eventId int,
 	PRIMARY KEY (userId,eventId),
 	FOREIGN KEY (userId) REFERENCES Users(id),
-	FOREIGN KEY (eventId) REFERENCES Events(id)
+	FOREIGN KEY (meetingId) REFERENCES Meetings(id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE Guests (
@@ -29,7 +29,7 @@ CREATE TABLE Guests (
 	eventId int,
 	PRIMARY KEY (userId,eventId),
 	FOREIGN KEY (userId) REFERENCES Users(id),
-	FOREIGN KEY (eventId) REFERENCES Events(id)
+	FOREIGN KEY (meetingId) REFERENCES Meetings(id)
 ) ENGINE=InnoDB;
 
 

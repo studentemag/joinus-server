@@ -4,7 +4,7 @@ package mag.joinus.web;
 import java.util.ArrayList;
 import java.util.List;
 
-import mag.joinus.model.Event;
+import mag.joinus.model.Meeting;
 import mag.joinus.service.JoinusService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,21 +16,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class EventController {
+public class MeetingController {
 	
 	@Autowired
 	JoinusService joinusService;
 	
 
-	public EventController(){
+	public MeetingController(){
 		System.out.println("Inside EventController constructor");
 	}
 	
     @RequestMapping(value="/users/{userId}/events", method=RequestMethod.GET)
-    public @ResponseBody List<Event> getUserEvents(
+    public @ResponseBody List<Meeting> getUserEvents(
             @PathVariable String userId) {
-    	Event e = new Event("il mio compleanno");
-    	List<Event> l = new ArrayList<Event>(); 
+    	Meeting e = new Meeting("il mio compleanno");
+    	List<Meeting> l = new ArrayList<Meeting>(); 
     	l.add(e);
         return l;
     }
