@@ -29,11 +29,11 @@ public class JoinusServiceImpl implements JoinusService{
 	
 	@Override
 	@Transactional
-	public int authenticate(String username) {
+	public int authenticate(String userName) {
 		User user;
-		List<User> userList = userRepository.findByName(username);
+		List<User> userList = userRepository.findByUserName(userName);
 		if (userList.isEmpty()) {
-			user = new User(username);
+			user = new User(userName);
 			userRepository.save(user);
 		}
 		else

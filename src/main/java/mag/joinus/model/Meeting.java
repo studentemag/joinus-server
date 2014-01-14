@@ -35,9 +35,6 @@ public class Meeting {
 		     inverseJoinColumns={@JoinColumn(name="userId", referencedColumnName="id")})
 	private List<User> participants;
 	
-	
-
-	
 	public int getId() {
 		return id;
 	}
