@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,7 +32,16 @@ public class User {
 	private String userName;
 	
 	@ManyToMany(mappedBy="participants")
-	private List<Meeting> participating_to;
+	private List<Meeting> meetingsAsParticipant;
+	
+	@ManyToMany(mappedBy="guests")
+	private List<Meeting> meetingsAsGuest;
+	
+	@OneToMany(mappedBy="moc")
+	private List<Meeting> meetingsAsMoc;
+	
+	@OneToMany(mappedBy="user")
+	private List<UserLocation> locations;
 
 	public int getId() {
 		return id;
