@@ -24,8 +24,8 @@ public class User {
 	@ManyToMany(mappedBy = "guests")
 	private List<Meeting> meetingsAsGuest;
 
-	@OneToMany(mappedBy = "moc")
-	private List<Meeting> meetingsAsMoc;
+	@OneToMany(mappedBy = "mc")
+	private List<Meeting> meetingsAsMc;
 
 	@ManyToMany(mappedBy = "participants")
 	private List<Meeting> meetingsAsParticipant;
@@ -51,8 +51,8 @@ public class User {
 		return meetingsAsGuest;
 	}
 
-	public List<Meeting> getMeetingsAsMoc() {
-		return meetingsAsMoc;
+	public List<Meeting> getMeetingsAsMc() {
+		return meetingsAsMc;
 	}
 
 	public List<Meeting> getMeetingsAsParticipant() {
@@ -79,8 +79,8 @@ public class User {
 		this.meetingsAsGuest = meetingsAsGuest;
 	}
 
-	public void setMeetingsAsMoc(List<Meeting> meetingsAsMoc) {
-		this.meetingsAsMoc = meetingsAsMoc;
+	public void setMeetingsAsMc(List<Meeting> meetingsAsMc) {
+		this.meetingsAsMc = meetingsAsMc;
 	}
 
 	public void setMeetingsAsParticipant(List<Meeting> meetingsAsParticipant) {

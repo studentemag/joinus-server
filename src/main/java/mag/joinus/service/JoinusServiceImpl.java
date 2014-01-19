@@ -31,7 +31,7 @@ public class JoinusServiceImpl implements JoinusService{
 	@Transactional
 	public int authenticate(String username) {
 		User user;
-		List<User> userList = userRepository.findByUserName(username);
+		List<User> userList = userRepository.findByUsername(username);
 		if (userList.isEmpty()) {
 			user = new User();
 			user.setUsername(username);

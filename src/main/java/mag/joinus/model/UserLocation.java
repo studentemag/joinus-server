@@ -1,7 +1,5 @@
 package mag.joinus.model;
 
-import java.sql.Date;
-
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -24,8 +22,8 @@ public class UserLocation extends Location{
 	@GeneratedValue
 	private int id;
 	
-	@Column(name = "date")
-	private Date date;
+	@Column(name = "timestamp")
+	private long timestamp;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user")

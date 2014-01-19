@@ -1,6 +1,5 @@
 package mag.joinus.model;
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -26,7 +25,7 @@ public class Meeting {
 	private String address;
 	
 	@Column(name="date")
-	private Date date;
+	private long date;
 	
 	@ManyToMany
 	@JoinTable(name="guests",
@@ -41,8 +40,8 @@ public class Meeting {
 	private float longitude;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="moc")
-	private User moc;
+	@JoinColumn(name="mc")
+	private User mc;
 	
 	@ManyToMany
 	@JoinTable(name="participants",
@@ -58,7 +57,7 @@ public class Meeting {
 	public String getAddress() {
 		return address;
 	}
-	public Date getDate() {
+	public long getDate() {
 		return date;
 	}
 	public List<User> getGuests() {
@@ -73,8 +72,8 @@ public class Meeting {
 	public float getLongitude() {
 		return longitude;
 	}
-	public User getMoc() {
-		return moc;
+	public User getMc() {
+		return mc;
 	}
 	public List<User> getParticipants() {
 		return participants;
@@ -85,7 +84,7 @@ public class Meeting {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public void setDate(Date date) {
+	public void setDate(long date) {
 		this.date = date;
 	}
 	public void setGuests(List<User> guests) {
@@ -100,8 +99,8 @@ public class Meeting {
 	public void setLongitude(float longitude) {
 		this.longitude = longitude;
 	}
-	public void setMoc(User moc) {
-		this.moc = moc;
+	public void setMc(User mc) {
+		this.mc = mc;
 	}
 	public void setParticipants(List<User> participants) {
 		this.participants = participants;
