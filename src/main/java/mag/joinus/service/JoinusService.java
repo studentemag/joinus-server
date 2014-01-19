@@ -12,4 +12,6 @@ public interface JoinusService {
 	
 	public void saveMeeting(Meeting event) throws DataAccessException;
 	public String getPippo();
+	
+
 }

@@ -13,47 +13,86 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "users")
 public class User {
-	
-	protected User() {}
-	
-	public User(String userName) {
-		super();
-		this.userName = userName;
-	}
 
 	@Id
 	@GeneratedValue
 	private int id;
 
+	@OneToMany(mappedBy = "user")
+	private List<UserLocation> locations;
+
+	@ManyToMany(mappedBy = "guests")
+	private List<Meeting> meetingsAsGuest;
+
+	@OneToMany(mappedBy = "moc")
+	private List<Meeting> meetingsAsMoc;
+
+	@ManyToMany(mappedBy = "participants")
+	private List<Meeting> meetingsAsParticipant;
+
 	@Column(name = "phone")
 	private String phone;
-	
+
 	@Column(name = "username")
-	private String userName;
-	
-	@ManyToMany(mappedBy="participants")
-	private List<Meeting> meetingsAsParticipant;
-	
-	@ManyToMany(mappedBy="guests")
-	private List<Meeting> meetingsAsGuest;
-	
-	@OneToMany(mappedBy="moc")
-	private List<Meeting> meetingsAsMoc;
-	
-	@OneToMany(mappedBy="user")
-	private List<UserLocation> locations;
+	private String username;
+
+	public User() {
+	}
 
 	public int getId() {
 		return id;
 	}
 
+	public List<UserLocation> getLocations() {
+		return locations;
+	}
+
+	public List<Meeting> getMeetingsAsGuest() {
+		return meetingsAsGuest;
+	}
+
+	public List<Meeting> getMeetingsAsMoc() {
+		return meetingsAsMoc;
+	}
+
+	public List<Meeting> getMeetingsAsParticipant() {
+		return meetingsAsParticipant;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public String getName() {
-		return userName;
+
+	public void setLocations(List<UserLocation> locations) {
+		this.locations = locations;
 	}
 
+	public void setMeetingsAsGuest(List<Meeting> meetingsAsGuest) {
+		this.meetingsAsGuest = meetingsAsGuest;
+	}
+
+	public void setMeetingsAsMoc(List<Meeting> meetingsAsMoc) {
+		this.meetingsAsMoc = meetingsAsMoc;
+	}
+
+	public void setMeetingsAsParticipant(List<Meeting> meetingsAsParticipant) {
+		this.meetingsAsParticipant = meetingsAsParticipant;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 }

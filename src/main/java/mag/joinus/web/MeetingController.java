@@ -10,6 +10,7 @@ import mag.joinus.service.JoinusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,10 +30,19 @@ public class MeetingController {
     @RequestMapping(value="/users/{userId}/events", method=RequestMethod.GET)
     public @ResponseBody List<Meeting> getUserEvents(
             @PathVariable String userId) {
-    	Meeting e = new Meeting("il mio compleanno");
+    	Meeting e = new Meeting();
+    	e.setTitle("il mio compleanno");
     	List<Meeting> l = new ArrayList<Meeting>(); 
     	l.add(e);
         return l;
+    }
+    
+    @RequestMapping(value="/events", method=RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    public @ResponseBody Meeting createMeeting(
+    		@RequestBody Meeting m
+    		){
+    	System.out.println("create meeting "+m);
+    	return m;
     }
     
     @RequestMapping("/users")
