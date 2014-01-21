@@ -33,11 +33,12 @@ public class Meeting {
 		     inverseJoinColumns={@JoinColumn(name="userId", referencedColumnName="id")})
 	private List<User> guests;
 	
+	//TODO potrebbe aver senso il tipo Location
 	@Column(name = "latitude")
-	private float latitude;
+	private double latitude;
 	
 	@Column(name = "longitude")
-	private float longitude;
+	private double longitude;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="mc")
@@ -66,10 +67,10 @@ public class Meeting {
 	public int getId() {
 		return id;
 	}
-	public float getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
-	public float getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 	public User getMc() {
