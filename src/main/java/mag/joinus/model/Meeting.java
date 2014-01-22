@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -33,12 +34,9 @@ public class Meeting {
 		     inverseJoinColumns={@JoinColumn(name="userId", referencedColumnName="id")})
 	private List<User> guests;
 	
-	//TODO potrebbe aver senso il tipo Location
-	@Column(name = "latitude")
-	private double latitude;
-	
-	@Column(name = "longitude")
-	private double longitude;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "latlng_id", referencedColumnName = "id")
+	private LatLng latLng;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="mc")
@@ -67,12 +65,7 @@ public class Meeting {
 	public int getId() {
 		return id;
 	}
-	public double getLatitude() {
-		return latitude;
-	}
-	public double getLongitude() {
-		return longitude;
-	}
+
 	public User getMc() {
 		return mc;
 	}
@@ -94,12 +87,15 @@ public class Meeting {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public void setLatitude(float latitude) {
-		this.latitude=latitude;
+
+	public LatLng getLatLng() {
+		return latLng;
 	}
-	public void setLongitude(float longitude) {
-		this.longitude = longitude;
+
+	public void setLatLng(LatLng latLng) {
+		this.latLng = latLng;
 	}
+
 	public void setMc(User mc) {
 		this.mc = mc;
 	}

@@ -1,7 +1,5 @@
 package mag.joinus.model;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,15 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "locations")
-@AttributeOverrides({
-	@AttributeOverride(name="latitude", column=@Column(name = "latitude")),
-	@AttributeOverride(name="longitude", column=@Column(name = "longitude"))
-})
-public class UserLocation extends Location{
+public class UserLocation{
 	@Id
 	@GeneratedValue
 	private int id;
@@ -26,7 +21,11 @@ public class UserLocation extends Location{
 	private long timestamp;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="user")
+	@JoinColumn(name="user_id")
 	private User user;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "latlng_id", referencedColumnName = "id")
+	private LatLng latLng;
 
 }

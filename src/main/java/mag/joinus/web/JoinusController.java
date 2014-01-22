@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class MeetingController {
+public class JoinusController {
 	
 	@Autowired
 	JoinusService joinusService;
 	
 
-	public MeetingController(){
+	public JoinusController(){
 		System.out.println("Inside EventController constructor");
 	}
 	
@@ -35,29 +35,29 @@ public class MeetingController {
     	Meeting m = new Meeting();
     	m.setTitle("il mio compleanno");
     	m.setId(0);
-    	m.setLatitude(112);
-    	m.setLongitude(345);
+//    	m.setLatitude(112);
+//    	m.setLongitude(345);
     	l.add(m);
     	
     	Meeting m2 = new Meeting();
     	m2.setTitle("pizza tra amici");
     	m2.setId(1);
-    	m2.setLatitude(343);
-    	m2.setLongitude(442);
+//    	m2.setLatitude(343);
+//    	m2.setLongitude(442);
     	l.add(m2);
     	
     	Meeting m3 = new Meeting();
     	m3.setTitle("tombolata da gino");
     	m3.setId(2);
-    	m3.setLatitude(17);
-    	m3.setLongitude(20);
+//    	m3.setLatitude(17);
+//    	m3.setLongitude(20);
     	l.add(m3);
     	
     	Meeting m4 = new Meeting();
     	m4.setTitle("pranzo della domenica");
     	m4.setId(3);
-    	m4.setLatitude(999);
-    	m4.setLongitude(666);
+//    	m4.setLatitude(999);
+//    	m4.setLongitude(666);
     	l.add(m4);
     	
     	System.out.println("get meetinglist for user " + userId);
@@ -68,6 +68,7 @@ public class MeetingController {
     public @ResponseBody Meeting createMeeting(
     		@RequestBody Meeting m
     		){
+    	joinusService.getPippo();
     	System.out.println("create meeting "+m);
     	return m;
     }

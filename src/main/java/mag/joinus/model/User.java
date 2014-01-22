@@ -33,8 +33,8 @@ public class User {
 	@Column(name = "phone")
 	private String phone;
 
-	@Column(name = "username")
-	private String username;
+	@Column(name = "name")
+	private String name;
 
 	public User() {
 	}
@@ -63,8 +63,8 @@ public class User {
 		return phone;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getName() {
+		return name;
 	}
 
 	public void setId(int id) {
@@ -91,8 +91,8 @@ public class User {
 		this.phone = phone;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setName(String username) {
+		this.name = username;
 	}
 
 }

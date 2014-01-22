@@ -27,14 +27,28 @@ public class JoinusServiceImpl implements JoinusService{
 		System.out.println("Inside JoinusServiceImpl constructor");
 	}
 	
+	/*
+	 * login
+	 * input: phone, username
+	 * phone is empty -> Stop by client
+	 * phone exists in db, name is empty -> retrieve
+	 * phone exists in db, name is not empty -> update with inserted name
+	 * phone doesn't exist in db, name is empty -> create with "noname"
+	 * phone doesn't exist in db, name is not empty -> create with inserted name
+	*/
+	public User login(User user){
+		return null;
+	}
+	
+	
 	@Override
 	@Transactional
 	public int authenticate(String username) {
 		User user;
-		List<User> userList = userRepository.findByUsername(username);
+		List<User> userList = userRepository.findByName(username);
 		if (userList.isEmpty()) {
 			user = new User();
-			user.setUsername(username);
+			user.setName(username);
 			userRepository.save(user);
 		}
 		else
