@@ -3,14 +3,15 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.springframework</groupId>
-    <artifactId>gs-accessing-data-jpa-complete</artifactId>
+    <groupId>mag.joinus</groupId>
+    <artifactId>joinus-server</artifactId>
+    <packaging>war</packaging>
     <version>0.1.0</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>0.5.0.M5</version>
+        <version>0.5.0.M6</version>
     </parent>
 
     <dependencies>
@@ -53,7 +54,7 @@
         <!-- use UTF-8 for everything -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <start-class>hello.Application</start-class>
+        <start-class>mag.Application</start-class>
     </properties>
 
     <build>
@@ -82,7 +83,7 @@
             <name>JBoss Maven Release Repository</name>
             <url>https://repository.jboss.org/nexus/content/repositories/releases</url>
             <snapshots>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </snapshots>
         </repository>
     </repositories>
@@ -93,7 +94,7 @@
             <name>Spring Milestones</name>
             <url>http://repo.spring.io/libs-milestone</url>
             <snapshots>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
