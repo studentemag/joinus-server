@@ -9,7 +9,6 @@ import org.springframework.dao.DataAccessException;
 public interface JoinusService {
 	
 	public User login(User user);
-	public int authenticate(String username);
 	
 	public void saveMeeting(Meeting event) throws DataAccessException;
 	public String getPippo();

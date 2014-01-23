@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mag.joinus.model.Meeting;
+import mag.joinus.model.User;
 import mag.joinus.service.JoinusService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,18 +66,21 @@ public class JoinusController {
     }
     
     @RequestMapping(value="/events", method=RequestMethod.POST, consumes = "application/json", produces = "application/json")
-    public @ResponseBody Meeting createMeeting(
-    		@RequestBody Meeting m
-    		){
-    	joinusService.getPippo();
-    	System.out.println("create meeting "+m);
+    public @ResponseBody Meeting createMeeting(@RequestBody Meeting m) {
+    	joinusService.saveMeeting(m);
+    	System.out.println("create meeting " + m);
     	return m;
     }
     
-    @RequestMapping("/users")
-    public @ResponseBody String greeting2(
-            @RequestParam(value="name", required=false, defaultValue="World") String name) {
-        return new String("pippo");
-    }
+//    @RequestMapping("/users")
+//    public @ResponseBody String greeting2(
+//            @RequestParam(value="name", required=false, defaultValue="World") String name) {
+//        return new String("pippo");
+//    }
 
+    @RequestMapping(value="/users", method=RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    public @ResponseBody User getUser(@RequestBody User u) {
+    	System.out.println("retrieve user " + u);
+    	return joinusService.login(u);
+	}
 }

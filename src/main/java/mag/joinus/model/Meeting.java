@@ -51,7 +51,11 @@ public class Meeting {
 	@Column(name = "title")
 	private String title;
 	
-	public Meeting() {}
+	
+	
+	public Meeting() {
+		
+	}
 	
 	public String getAddress() {
 		return address;

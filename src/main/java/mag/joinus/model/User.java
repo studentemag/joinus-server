@@ -10,6 +10,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -18,15 +20,19 @@ public class User {
 	@GeneratedValue
 	private int id;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<UserLocation> locations;
 
+	@JsonIgnore
 	@ManyToMany(mappedBy = "guests")
 	private List<Meeting> meetingsAsGuest;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "mc")
 	private List<Meeting> meetingsAsMc;
 
+	@JsonIgnore
 	@ManyToMany(mappedBy = "participants")
 	private List<Meeting> meetingsAsParticipant;
 
