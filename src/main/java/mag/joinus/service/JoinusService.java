@@ -9,7 +9,7 @@ import mag.joinus.model.User;
 public interface JoinusService {
 	
 	public User login(User user);
-	public List<Meeting> getUpcomingEvents(int userId);
+	public List<Meeting> getUpcomingEvents(String phone);
 	public Meeting createMeeting(Meeting m);
 
 }

@@ -28,24 +28,24 @@ insert into latlngs(id,latitude,longitude) values(3,40.75788333333333, 14.43945)
 insert into latlngs(id,latitude,longitude) values(4,40.8182, 14.1794)
 insert into latlngs(id,latitude,longitude) values(5,40.63173333333334, 14.398533333333333)
 
-insert into users(id,name,phone) values (1,'peppe','3391421288');
-insert into users(id,name,phone) values (2,'mario','3490838036');
-insert into users(id,name,phone) values (3,'luca','3201522887');
-insert into users(id,name,phone) values (4,'giovanni','3733912057');
+insert into users(name,phone) values ('peppe','3391421288');
+insert into users(name,phone) values ('mario','3490838036');
+insert into users(name,phone) values ('luca','3201522887');
+insert into users(name,phone) values ('giovanni','3733912057');
 
-insert into meetings(id,title,address,date,latlng_id,mc) values (1,'Pizza for Luca birthday', 'Corso Umberto I, 274', 1363375800000, 1, 3);
+insert into meetings(id,title,address,date,latlng_id,mc) values (1,'Pizza for Luca birthday', 'Corso Umberto I, 274', 1363375800000, 1, '3201522887');
 
-insert into guests values (1,4);
+insert into guests values (1,'3733912057');
 
-insert into participants values (1,1);
-insert into participants values (1,2);
+insert into participants values (1,'3391421288');
+insert into participants values (1,'3490838036');
 
-insert into locations(id,user_id,timestamp,latlng_id) values (0,2,1363373100000,4);
-insert into locations(id,user_id,timestamp,latlng_id) values (1,2,1363374000000,2);
-insert into locations(id,user_id,timestamp,latlng_id) values (2,1,1363374000000,5);
-insert into locations(id,user_id,timestamp,latlng_id) values (3,1,1363374900000,5);
-insert into locations(id,user_id,timestamp,latlng_id) values (4,3,1363374900000,3);
-insert into locations(id,user_id,timestamp,latlng_id) values (5,3,1363374000000,3);
+insert into locations(id,user_id,timestamp,latlng_id) values (0,'3490838036',1363373100000,4);
+insert into locations(id,user_id,timestamp,latlng_id) values (1,'3490838036',1363374000000,2);
+insert into locations(id,user_id,timestamp,latlng_id) values (2,'3391421288',1363374000000,5);
+insert into locations(id,user_id,timestamp,latlng_id) values (3,'3391421288',1363374900000,5);
+insert into locations(id,user_id,timestamp,latlng_id) values (4,'3201522887',1363374900000,3);
+insert into locations(id,user_id,timestamp,latlng_id) values (5,'3201522887',1363374000000,3);
 
 
 

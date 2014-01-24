@@ -30,8 +30,8 @@ public class Meeting {
 	
 	@ManyToMany
 	@JoinTable(name="guests",
-		     joinColumns={@JoinColumn(name="meetingId", referencedColumnName="id")},
-		     inverseJoinColumns={@JoinColumn(name="userId", referencedColumnName="id")})
+		     joinColumns={@JoinColumn(name="meeting_id", referencedColumnName="id")},
+		     inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="phone")})
 	private List<User> guests;
 	
 	@OneToOne(fetch = FetchType.EAGER)
@@ -44,8 +44,8 @@ public class Meeting {
 	
 	@ManyToMany
 	@JoinTable(name="participants",
-		     joinColumns={@JoinColumn(name="meetingId", referencedColumnName="id")},
-		     inverseJoinColumns={@JoinColumn(name="userId", referencedColumnName="id")})
+		     joinColumns={@JoinColumn(name="meeting_id", referencedColumnName="id")},
+		     inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="phone")})
 	private List<User> participants;
 	
 	@Column(name = "title")

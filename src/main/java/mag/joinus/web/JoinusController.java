@@ -25,16 +25,7 @@ public class JoinusController {
 	public JoinusController(){
 		System.out.println("Inside EventController constructor");
 	}
-	
-    @RequestMapping(value="/users/{userId}/events", method=RequestMethod.GET)
-    public @ResponseBody List<Meeting> getUpcomingEvents(
-            @PathVariable Integer userId) {
-    	System.out.println("JoinusController::getUpcomingEvents for user "+userId);
-    	List<Meeting> list = joinusService.getUpcomingEvents(userId);
-    	return list;
-    	
-    }
-        
+	   
     @RequestMapping(value="/events", method=RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public @ResponseBody Meeting createMeeting(@RequestBody Meeting m) {
     	System.out.println("JoinusController::createMeeting for meeting "+m.getTitle());
@@ -47,4 +38,13 @@ public class JoinusController {
     	System.out.println("retrieve user " + u);
     	return joinusService.login(u);
 	}
+    
+    @RequestMapping(value="/users/{phone}/events", method=RequestMethod.GET)
+    public @ResponseBody List<Meeting> getUpcomingEvents(
+            @PathVariable String phone) {
+    	System.out.println("JoinusController::getUpcomingEvents for user "+phone);
+    	List<Meeting> list = joinusService.getUpcomingEvents(phone);
+    	return list;
+    	
+    }
 }

@@ -34,7 +34,6 @@ public class TestLogin {
 		
 		long i = userRepository.count();
 		Assert.assertEquals(4, i);
-		Assert.assertEquals(2, user.getId());
 		Assert.assertEquals("mario", user.getName());
 		Assert.assertEquals("3490838036", user.getPhone());
 	}
@@ -50,7 +49,6 @@ public class TestLogin {
 		
 		long i = userRepository.count();
 		Assert.assertEquals(4, i);
-		Assert.assertEquals(2, user.getId());
 		Assert.assertEquals("m", user.getName());
 		Assert.assertEquals("3490838036", user.getPhone());
 	}
@@ -66,7 +64,6 @@ public class TestLogin {
 		
 		long i = userRepository.count();
 		Assert.assertEquals(5, i);
-		Assert.assertEquals(5, user.getId());
 		Assert.assertEquals("noname", user.getName());
 		Assert.assertEquals("3490000000", user.getPhone());
 	}
@@ -82,7 +79,6 @@ public class TestLogin {
 		
 		long i = userRepository.count();
 		Assert.assertEquals(5, i);
-		Assert.assertEquals(5, user.getId());
 		Assert.assertEquals("gino", user.getName());
 		Assert.assertEquals("3490000000", user.getPhone());
 	}

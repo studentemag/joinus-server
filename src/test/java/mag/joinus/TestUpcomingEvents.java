@@ -25,7 +25,7 @@ public class TestUpcomingEvents {
 	
 	@Test
 	public void testGetUpcomingEvents01(){
-		List<Meeting> eventsForMario = joinusService.getUpcomingEvents(2);
+		List<Meeting> eventsForMario = joinusService.getUpcomingEvents("3391421288");
 		Assert.assertEquals(eventsForMario.size(),1);
 	}
 

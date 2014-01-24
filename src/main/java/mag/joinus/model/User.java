@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -17,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class User {
 
 	@Id
-	@GeneratedValue
-	private int id;
-
+	@Column(name = "phone")
+	private String phone;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<UserLocation> locations;
@@ -36,17 +35,11 @@ public class User {
 	@ManyToMany(mappedBy = "participants")
 	private List<Meeting> meetingsAsParticipant;
 
-	@Column(name = "phone")
-	private String phone;
 
 	@Column(name = "name")
 	private String name;
 
 	public User() {
-	}
-
-	public int getId() {
-		return id;
 	}
 
 	public List<UserLocation> getLocations() {
@@ -71,10 +64,6 @@ public class User {
 
 	public String getName() {
 		return name;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public void setLocations(List<UserLocation> locations) {
