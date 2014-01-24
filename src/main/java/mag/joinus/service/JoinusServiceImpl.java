@@ -110,6 +110,13 @@ public class JoinusServiceImpl implements JoinusService{
 		return createdM;
 	}
 
+	@Override
+	@Transactional
+	public Meeting acceptInvitationTo(int meetingId, User u) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 	

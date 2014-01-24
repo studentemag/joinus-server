@@ -26,13 +26,21 @@ public class JoinusController {
 		System.out.println("Inside EventController constructor");
 	}
 	   
-    @RequestMapping(value="/events", method=RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value="/events", method=RequestMethod.POST, 
+    		consumes = "application/json", produces = "application/json")
     public @ResponseBody Meeting createMeeting(@RequestBody Meeting m) {
     	System.out.println("JoinusController::createMeeting for meeting "+m.getTitle());
     	return joinusService.createMeeting(m);
     }
 
-
+    @RequestMapping(value="/events/{meeting_id}/accept", method=RequestMethod.POST, 
+    		consumes = "application/json", produces = "application/json")
+    public @ResponseBody Meeting acceptInvitationTo(
+    										@PathVariable int meeting_id, 
+    										@RequestBody User u){
+    	return null;
+    }
+    
     @RequestMapping(value="/users", method=RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public @ResponseBody User getUser(@RequestBody User u) {
     	System.out.println("retrieve user " + u);
