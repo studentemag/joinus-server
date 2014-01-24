@@ -29,16 +29,24 @@ public class JoinusController {
     @RequestMapping(value="/events", method=RequestMethod.POST, 
     		consumes = "application/json", produces = "application/json")
     public @ResponseBody Meeting createMeeting(@RequestBody Meeting m) {
-    	System.out.println("JoinusController::createMeeting for meeting "+m.getTitle());
+    	System.out.println("JoinusController.createMeeting for meeting " + m.getTitle());
     	return joinusService.createMeeting(m);
     }
 
     @RequestMapping(value="/events/{meeting_id}/accept", method=RequestMethod.POST, 
     		consumes = "application/json", produces = "application/json")
-    public @ResponseBody Meeting acceptInvitationTo(
-    										@PathVariable int meeting_id, 
-    										@RequestBody User u){
-    	return null;
+    public @ResponseBody Meeting acceptInvitation(@PathVariable int meeting_id, @RequestBody User u) {
+    	System.out.println("JoinusController.acceptInvitationTo for meeting " + meeting_id + "and user" + u.getPhone());
+    	    	
+    	return joinusService.acceptInvitationTo(meeting_id, u);
+    }
+    
+    @RequestMapping(value="/events/{meeting_id}/deny", method=RequestMethod.POST, 
+    		consumes = "application/json", produces = "application/json")
+    public @ResponseBody Meeting denyInvitation(@PathVariable int meeting_id, @RequestBody User u) {
+    	System.out.println("JoinusController.acceptInvitationTo for meeting " + meeting_id + "and user" + u.getPhone());
+    	    	
+    	return joinusService.denyInvitationTo(meeting_id, u);
     }
     
     @RequestMapping(value="/users", method=RequestMethod.POST, consumes = "application/json", produces = "application/json")
@@ -50,7 +58,7 @@ public class JoinusController {
     @RequestMapping(value="/users/{phone}/events", method=RequestMethod.GET)
     public @ResponseBody List<Meeting> getUpcomingEvents(
             @PathVariable String phone) {
-    	System.out.println("JoinusController::getUpcomingEvents for user "+phone);
+    	System.out.println("JoinusController.getUpcomingEvents for user " + phone);
     	List<Meeting> list = joinusService.getUpcomingEvents(phone);
     	return list;
     	

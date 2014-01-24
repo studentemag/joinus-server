@@ -112,9 +112,38 @@ public class JoinusServiceImpl implements JoinusService{
 
 	@Override
 	@Transactional
-	public Meeting acceptInvitationTo(int meetingId, User u) {
-		// TODO Auto-generated method stub
-		return null;
+	public Meeting acceptInvitationTo(int meetingId, User user) {
+		String phone = user.getPhone();
+		
+		Meeting m = meetingRepository.findOne(meetingId);
+		User u = userRepository.findOne(phone);
+
+		//DELETE
+		m.getGuests().remove(u);
+		u.getMeetingsAsGuest().remove(m);
+		//INSERT
+		m.getParticipants().add(u);
+		u.getMeetingsAsParticipant().add(m);
+		
+		meetingRepository.save(m);
+		
+		return meetingRepository.findOne(meetingId);
+	}
+
+	@Override
+	public Meeting denyInvitationTo(int meetingId, User user) {
+		String phone = user.getPhone();
+		
+		Meeting m = meetingRepository.findOne(meetingId);
+		User u = userRepository.findOne(phone);
+
+		//DELETE
+		m.getGuests().remove(u);
+		u.getMeetingsAsGuest().remove(m);
+		
+		meetingRepository.save(m);
+		
+		return meetingRepository.findOne(meetingId);
 	}
 
 
