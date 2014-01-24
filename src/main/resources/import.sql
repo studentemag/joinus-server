@@ -35,14 +35,10 @@ insert into users(id,name,phone) values (4,'giovanni','3733912057');
 
 insert into meetings(id,title,address,date,latlng_id,mc) values (1,'Pizza for Luca birthday', 'Corso Umberto I, 274', 1363375800000, 1, 3);
 
-insert into guests values (1,1);
-insert into guests values (1,2);
-insert into guests values (1,3);
 insert into guests values (1,4);
 
 insert into participants values (1,1);
 insert into participants values (1,2);
-insert into participants values (1,3);
 
 insert into locations(id,user_id,timestamp,latlng_id) values (0,2,1363373100000,4);
 insert into locations(id,user_id,timestamp,latlng_id) values (1,2,1363374000000,2);

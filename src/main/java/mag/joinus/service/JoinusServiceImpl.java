@@ -1,5 +1,6 @@
 package mag.joinus.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import mag.joinus.model.Meeting;
@@ -8,7 +9,6 @@ import mag.joinus.repository.springdatajpa.MeetingRepository;
 import mag.joinus.repository.springdatajpa.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -74,16 +74,28 @@ public class JoinusServiceImpl implements JoinusService{
 		
 		return user;
 	}
-	
-    @Override
-    @Transactional
-    public void saveMeeting(Meeting event) throws DataAccessException {
-        meetingRepository.save(event);
-    }
-    
-    public String getPippo(){
-    	return "pippo";
-    }
+	    
+	@Override
+	@Transactional
+	public List<Meeting> getUpcomingEvents(int userId) {
+		User u = userRepository.findOne(userId);
+		List<Meeting> meetingsAsParticipant = u.getMeetingsAsParticipant();
+		List<Meeting> meetingsAsGuest = u.getMeetingsAsGuest();
+		List<Meeting> meetingsAsMc = u.getMeetingsAsMc();
+		List<Meeting> meetings = new ArrayList<Meeting>();
+		meetings.addAll(meetingsAsMc);
+		meetings.addAll(meetingsAsGuest);
+		meetings.addAll(meetingsAsParticipant);
+		return meetings;
+	}
+
+	@Override
+	@Transactional
+	public Meeting createMeeting(Meeting m) {
+		// TODO Auto-generated method stub
+		return null;
+		
+	}
 
 
 

@@ -20,11 +20,11 @@ public class UserLocation{
 	@Column(name = "timestamp")
 	private long timestamp;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "latlng_id", referencedColumnName = "id")
 	private LatLng latLng;
 

@@ -34,11 +34,11 @@ public class Meeting {
 		     inverseJoinColumns={@JoinColumn(name="userId", referencedColumnName="id")})
 	private List<User> guests;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "latlng_id", referencedColumnName = "id")
 	private LatLng latLng;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="mc")
 	private User mc;
 	
@@ -51,45 +51,38 @@ public class Meeting {
 	@Column(name = "title")
 	private String title;
 	
-	
-	
-	public Meeting() {
-		
-	}
-	
-	public String getAddress() {
-		return address;
-	}
-	public long getDate() {
-		return date;
-	}
-	public List<User> getGuests() {
-		return guests;
-	}
+	public Meeting() {}
+
 	public int getId() {
 		return id;
 	}
 
-	public User getMc() {
-		return mc;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public List<User> getParticipants() {
-		return participants;
+
+	public String getAddress() {
+		return address;
 	}
-	public String getTitle() {
-		return title;
-	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	public long getDate() {
+		return date;
+	}
+
 	public void setDate(long date) {
 		this.date = date;
 	}
+
+	public List<User> getGuests() {
+		return guests;
+	}
+
 	public void setGuests(List<User> guests) {
 		this.guests = guests;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public LatLng getLatLng() {
@@ -100,13 +93,29 @@ public class Meeting {
 		this.latLng = latLng;
 	}
 
+	public User getMc() {
+		return mc;
+	}
+
 	public void setMc(User mc) {
 		this.mc = mc;
 	}
+
+	public List<User> getParticipants() {
+		return participants;
+	}
+
 	public void setParticipants(List<User> participants) {
 		this.participants = participants;
 	}
+
+	public String getTitle() {
+		return title;
+	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
+	
 }
