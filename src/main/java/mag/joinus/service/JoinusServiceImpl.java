@@ -1,6 +1,7 @@
 package mag.joinus.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import mag.joinus.model.Meeting;
@@ -89,6 +90,7 @@ public class JoinusServiceImpl implements JoinusService{
 		meetings.addAll(meetingsAsMc);
 		meetings.addAll(meetingsAsGuest);
 		meetings.addAll(meetingsAsParticipant);
+		Collections.sort(meetings);
 		return meetings;
 	}
 

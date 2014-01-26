@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "meetings")
-public class Meeting {
+public class Meeting implements Comparable<Meeting>{
 	
 	@Id
 	@GeneratedValue
@@ -115,6 +115,11 @@ public class Meeting {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	@Override
+	public int compareTo(Meeting m) {
+		return this.date<m.getDate() ? -1 : this.date>m.getDate() ? 1 : 0;
 	}
 	
 	
