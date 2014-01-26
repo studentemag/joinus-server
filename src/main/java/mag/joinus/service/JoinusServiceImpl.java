@@ -118,13 +118,17 @@ public class JoinusServiceImpl implements JoinusService{
 		Meeting m = meetingRepository.findOne(meetingId);
 		User u = userRepository.findOne(phone);
 
-		//DELETE
+		//DELETE GUEST
 		m.getGuests().remove(u);
 		u.getMeetingsAsGuest().remove(m);
+		//DELETE PARTICIPANT
+		m.getParticipants().remove(u);
+		u.getMeetingsAsParticipant().remove(m);
 		//INSERT
 		m.getParticipants().add(u);
 		u.getMeetingsAsParticipant().add(m);
 		
+		userRepository.save(u);
 		meetingRepository.save(m);
 		
 		return meetingRepository.findOne(meetingId);
@@ -137,10 +141,14 @@ public class JoinusServiceImpl implements JoinusService{
 		Meeting m = meetingRepository.findOne(meetingId);
 		User u = userRepository.findOne(phone);
 
-		//DELETE
+		//DELETE GUEST
 		m.getGuests().remove(u);
 		u.getMeetingsAsGuest().remove(m);
+		//DELETE PARTICIPANT
+		m.getParticipants().remove(u);
+		u.getMeetingsAsParticipant().remove(m);
 		
+		userRepository.save(u);
 		meetingRepository.save(m);
 		
 		return meetingRepository.findOne(meetingId);
