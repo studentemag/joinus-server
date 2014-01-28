@@ -121,6 +121,16 @@ public class Meeting implements Comparable<Meeting>{
 	public int compareTo(Meeting m) {
 		return this.date<m.getDate() ? -1 : this.date>m.getDate() ? 1 : 0;
 	}
+
+	/* (non Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Meeting [id=" + id + ", address=" + address + ", date=" + date
+				+ ", guests=" + guests + ", latLng=" + latLng + ", mc=" + mc
+				+ ", participants=" + participants + ", title=" + title + "]";
+	}
 	
 	
 }

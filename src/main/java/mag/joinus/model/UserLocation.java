@@ -88,4 +88,13 @@ public class UserLocation {
 		this.latLng = latLng;
 	}
 
+	/* (non Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "UserLocation [id=" + id + ", timestamp=" + timestamp
+				+ ", user=" + user + ", latLng=" + latLng + "]";
+	}
+
 }

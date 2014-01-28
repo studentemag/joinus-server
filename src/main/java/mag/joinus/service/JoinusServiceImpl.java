@@ -164,8 +164,33 @@ public class JoinusServiceImpl implements JoinusService {
 
 	@Override
 	public List<UserLocation> getLocations(int meeting_id) {
-		// TODO Stub di metodo generato automaticamente
-		return null;
+		List<UserLocation> participantLocations = new ArrayList<UserLocation>();//Collections.emptyList();
+		
+		Meeting meet = meetingRepository.findOne(meeting_id);
+		System.out.println(meet);
+		
+		if (meet != null) {
+			List<User> participants = meet.getParticipants();
+			
+			List<User> phones = new ArrayList<User>();//Collections.emptyList();
+			for (User user : participants) {
+				User u = new User();
+				u.setPhone(user.getPhone());
+				phones.add(u);
+			}
+			
+			for (User user : phones) {
+				List<UserLocation> locations = userLocationRepository.findByUser(user);
+				UserLocation last = new UserLocation();
+				if (locations != null) {
+					last = locations.get(locations.size() - 1);
+				}
+				participantLocations.add(last);
+				System.out.println(last);
+			}
+		}
+		
+		return participantLocations;
 	}
 
 	@Override
@@ -173,7 +198,6 @@ public class JoinusServiceImpl implements JoinusService {
 		User user = new User();
 		user.setPhone(phone);
 		//user.setPhone(uLoc.getUser().getPhone());
-		System.out.println(uLoc.getUser().getPhone());
 		List<UserLocation> locations = userLocationRepository.findByUser(user);
 		
 		LatLng l = uLoc.getLatLng();
@@ -192,9 +216,14 @@ public class JoinusServiceImpl implements JoinusService {
 			System.out.println("UPDATE");
 		}
 		
+		
 		List<UserLocation> locs = (List<UserLocation>) userLocationRepository.findAll();
 		for (UserLocation userLocation : locs) {
-			System.out.println(userLocation.getLatLng().getLatitude() + " " + userLocation.getLatLng().getLongitude());
+			System.out.println(userLocation);
+		}
+		List<LatLng> lls = (List<LatLng>) latLngRepository.findAll();
+		for (LatLng latLng : lls) {
+			System.out.println(latLng);
 		}
 	}
 }

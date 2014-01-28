@@ -90,4 +90,12 @@ public class User {
 		this.name = username;
 	}
 
+	/* (non Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "User [phone=" + phone + ", name=" + name + "]";
+	}
+
 }

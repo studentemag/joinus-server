@@ -43,6 +43,15 @@ public class LatLng {
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
+	}
+
+	/* (non Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "LatLng [id=" + id + ", latitude=" + latitude + ", longitude="
+				+ longitude + "]";
 	}	
 	
 }
