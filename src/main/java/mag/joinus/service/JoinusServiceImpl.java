@@ -143,6 +143,7 @@ public class JoinusServiceImpl implements JoinusService {
 	}
 
 	@Override
+	@Transactional
 	public Meeting denyInvitationTo(int meetingId, User user) {
 		String phone = user.getPhone();
 		
@@ -163,6 +164,7 @@ public class JoinusServiceImpl implements JoinusService {
 	}
 
 	@Override
+	@Transactional
 	public List<UserLocation> getLocations(int meeting_id) {
 		List<UserLocation> participantLocations = new ArrayList<UserLocation>();//Collections.emptyList();
 		
@@ -194,6 +196,7 @@ public class JoinusServiceImpl implements JoinusService {
 	}
 
 	@Override
+	@Transactional
 	public void shareLocation(String phone, UserLocation uLoc) {
 		User user = new User();
 		user.setPhone(phone);
