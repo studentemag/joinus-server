@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import mag.joinus.model.LatLng;
 import mag.joinus.model.Meeting;
 import mag.joinus.model.User;
+import mag.joinus.model.UserLocation;
 import mag.joinus.repository.springdatajpa.LatLngRepository;
 import mag.joinus.repository.springdatajpa.MeetingRepository;
+import mag.joinus.repository.springdatajpa.UserLocationRepository;
 import mag.joinus.repository.springdatajpa.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-public class JoinusServiceImpl implements JoinusService{
+public class JoinusServiceImpl implements JoinusService {
 
 	@Autowired
 	private MeetingRepository meetingRepository;
@@ -27,6 +30,9 @@ public class JoinusServiceImpl implements JoinusService{
 	@Autowired
 	private LatLngRepository latLngRepository;
 
+	@Autowired
+	private UserLocationRepository userLocationRepository;
+	
 	public JoinusServiceImpl(){
 		System.out.println("Inside JoinusServiceImpl constructor");
 	}
@@ -156,7 +162,39 @@ public class JoinusServiceImpl implements JoinusService{
 		return meetingRepository.findOne(meetingId);
 	}
 
+	@Override
+	public List<UserLocation> getLocations(int meeting_id) {
+		// TODO Stub di metodo generato automaticamente
+		return null;
+	}
 
-
-	
+	@Override
+	public void shareLocation(String phone, UserLocation uLoc) {
+		User user = new User();
+		user.setPhone(phone);
+		//user.setPhone(uLoc.getUser().getPhone());
+		System.out.println(uLoc.getUser().getPhone());
+		List<UserLocation> locations = userLocationRepository.findByUser(user);
+		
+		LatLng l = uLoc.getLatLng();
+		latLngRepository.save(l);
+		
+		if (locations.isEmpty()) {
+			System.out.println("INSERT");
+			userLocationRepository.save(uLoc);
+		}
+		else {
+			UserLocation last = locations.get(locations.size() - 1);
+			int id = last.getId();
+			last = uLoc;
+			last.setId(id);
+			userLocationRepository.save(last);
+			System.out.println("UPDATE");
+		}
+		
+		List<UserLocation> locs = (List<UserLocation>) userLocationRepository.findAll();
+		for (UserLocation userLocation : locs) {
+			System.out.println(userLocation.getLatLng().getLatitude() + " " + userLocation.getLatLng().getLongitude());
+		}
+	}
 }

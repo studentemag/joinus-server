@@ -5,6 +5,7 @@ import java.util.List;
 
 import mag.joinus.model.Meeting;
 import mag.joinus.model.User;
+import mag.joinus.model.UserLocation;
 import mag.joinus.service.JoinusService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,12 +56,28 @@ public class JoinusController {
     	return joinusService.login(u);
 	}
     
-    @RequestMapping(value="/users/{phone}/events", method=RequestMethod.GET)
+    @RequestMapping(value="/users/{phone}/events", method=RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<Meeting> getUpcomingEvents(
             @PathVariable String phone) {
     	System.out.println("JoinusController.getUpcomingEvents for user " + phone);
     	List<Meeting> list = joinusService.getUpcomingEvents(phone);
     	return list;
     	
+    }
+    
+    @RequestMapping(value="/events/{meeting_id}/locations", method=RequestMethod.GET, produces = "application/json")
+    public @ResponseBody List<UserLocation> getLocations(
+            @PathVariable int meeting_id) {
+    	System.out.println("JoinusController.getLocations for event " + meeting_id);
+    	List<UserLocation> list = joinusService.getLocations(meeting_id);
+    	return list;
+    	
+    }
+    
+    @RequestMapping(value="/users/{phone}/locations", method=RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    public @ResponseBody void shareLocation(@PathVariable String phone,
+    		@RequestBody UserLocation uLoc) {
+    	System.out.println("JoinusController.shareLocation for user " + uLoc.getUser().getName());
+    	joinusService.shareLocation(phone, uLoc);
     }
 }

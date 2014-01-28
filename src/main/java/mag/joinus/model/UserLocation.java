@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "locations")
-public class UserLocation{
+public class UserLocation {
 	@Id
 	@GeneratedValue
 	private int id;
@@ -27,5 +27,65 @@ public class UserLocation{
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "latlng_id", referencedColumnName = "id")
 	private LatLng latLng;
+
+	public UserLocation() {
+		
+	}
+	
+	/**
+	 * @return id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id id da impostare
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return timestamp
+	 */
+	public long getTimestamp() {
+		return timestamp;
+	}
+
+	/**
+	 * @param timestamp timestamp da impostare
+	 */
+	public void setTimestamp(long timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	/**
+	 * @return user
+	 */
+	public User getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user user da impostare
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	/**
+	 * @return latLng
+	 */
+	public LatLng getLatLng() {
+		return latLng;
+	}
+
+	/**
+	 * @param latLng latLng da impostare
+	 */
+	public void setLatLng(LatLng latLng) {
+		this.latLng = latLng;
+	}
 
 }
