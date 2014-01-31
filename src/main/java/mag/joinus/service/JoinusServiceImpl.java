@@ -183,22 +183,25 @@ public class JoinusServiceImpl implements JoinusService {
 			List<User> participants = meet.getParticipants();
 			
 			List<User> phones = new ArrayList<User>();//Collections.emptyList();
-			for (User user : participants) {
-				User u = new User();
-				u.setPhone(user.getPhone());
-				phones.add(u);
+			if (participants != null) {
+				for (User user : participants) {
+					User u = new User();
+					u.setPhone(user.getPhone());
+					phones.add(u);
+				}
 			}
 			
 			phones.add(meet.getMc());
 			
 			for (User user : phones) {
 				List<UserLocation> locations = userLocationRepository.findByUser(user);
-				UserLocation last = new UserLocation();
-				if (locations != null) {
+				UserLocation last;
+				if (!locations.isEmpty()) {
 					last = locations.get(locations.size() - 1);
+				
+					participantLocations.add(last);
+					System.out.println(last);
 				}
-				participantLocations.add(last);
-				System.out.println(last);
 			}
 		}
 		
