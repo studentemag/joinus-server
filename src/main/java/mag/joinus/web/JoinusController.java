@@ -50,13 +50,15 @@ public class JoinusController {
     	return joinusService.denyInvitationTo(meeting_id, u);
     }
     
-    @RequestMapping(value="/users", method=RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value="/users", method=RequestMethod.POST,
+    		consumes = "application/json", produces = "application/json")
     public @ResponseBody User getUser(@RequestBody User u) {
     	System.out.println("retrieve user " + u);
     	return joinusService.login(u);
 	}
     
-    @RequestMapping(value="/users/{phone}/events", method=RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value="/users/{phone}/events", method=RequestMethod.GET,
+    		produces = "application/json")
     public @ResponseBody List<Meeting> getUpcomingEvents(
             @PathVariable String phone) {
     	System.out.println("JoinusController.getUpcomingEvents for user " + phone);
@@ -65,7 +67,8 @@ public class JoinusController {
     	
     }
     
-    @RequestMapping(value="/events/{meeting_id}/locations", method=RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value="/events/{meeting_id}/locations", method=RequestMethod.GET,
+    		produces = "application/json")
     public @ResponseBody List<UserLocation> getLocations(@PathVariable int meeting_id) {
     	System.out.println("JoinusController.getLocations for event " + meeting_id);
     	List<UserLocation> list = joinusService.getLocations(meeting_id);
@@ -73,7 +76,8 @@ public class JoinusController {
     	
     }
     
-    @RequestMapping(value="/users/{phone}/locations", method=RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value="/users/{phone}/locations", method=RequestMethod.POST,
+    		consumes = "application/json"/*, produces = "application/json"*/)
     public @ResponseBody void shareLocation(@PathVariable String phone,
     		@RequestBody UserLocation uLoc) {
     	System.out.println("JoinusController.shareLocation: " + uLoc);
