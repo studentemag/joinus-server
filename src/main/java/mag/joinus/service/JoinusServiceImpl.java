@@ -189,6 +189,8 @@ public class JoinusServiceImpl implements JoinusService {
 				phones.add(u);
 			}
 			
+			phones.add(meet.getMc());
+			
 			for (User user : phones) {
 				List<UserLocation> locations = userLocationRepository.findByUser(user);
 				UserLocation last = new UserLocation();

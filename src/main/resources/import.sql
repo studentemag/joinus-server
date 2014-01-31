@@ -43,12 +43,12 @@ insert into meetings(id,title,address,date,latlng_id,mc) values (1,'Pizza for Lu
 insert into guests values (1,'3733912057');
 insert into participants values (1,'3391421288');
 insert into participants values (1,'3490838036');
-insert into locations(id,user_id,timestamp,latlng_id) values (0,'3490838036',1363373100000,4);
+-- insert into locations(id,user_id,timestamp,latlng_id) values (0,'3490838036',1363373100000,4);
 insert into locations(id,user_id,timestamp,latlng_id) values (1,'3490838036',1363374000000,2);
-insert into locations(id,user_id,timestamp,latlng_id) values (2,'3391421288',1363374000000,5);
+-- insert into locations(id,user_id,timestamp,latlng_id) values (2,'3391421288',1363374000000,5);
 insert into locations(id,user_id,timestamp,latlng_id) values (3,'3391421288',1363374900000,5);
 insert into locations(id,user_id,timestamp,latlng_id) values (4,'3201522887',1363374900000,3);
-insert into locations(id,user_id,timestamp,latlng_id) values (5,'3201522887',1363374000000,3);
+-- insert into locations(id,user_id,timestamp,latlng_id) values (5,'3201522887',1363374000000,3);
 
 insert into meetings(id,title,address,date,latlng_id,mc) values (2,'A pizza at Sorbillo', 'Via dei Tribunali', 1392751842000, 6, '3490838036');
 insert into guests values (2,'3391421288');
