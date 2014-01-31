@@ -77,10 +77,12 @@ public class JoinusController {
     }
     
     @RequestMapping(value="/users/{phone}/locations", method=RequestMethod.POST,
-    		consumes = "application/json"/*, produces = "application/json"*/)
-    public @ResponseBody void shareLocation(@PathVariable String phone,
+    		consumes = "application/json", produces = "application/json")
+    public @ResponseBody User shareLocation(@PathVariable String phone,
     		@RequestBody UserLocation uLoc) {
     	System.out.println("JoinusController.shareLocation: " + uLoc);
     	joinusService.shareLocation(phone, uLoc);
+    	
+    	return new User();
     }
 }
