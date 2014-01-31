@@ -102,6 +102,14 @@ public class JoinusServiceImpl implements JoinusService {
 
 	@Override
 	@Transactional
+	/*
+	 * (non-Javadoc)
+	 * @see mag.joinus.service.JoinusService#createMeeting(mag.joinus.model.Meeting)
+	 * Creates a meeting.
+	 * If users are specified as guests of the meeting, but not present into the database, they are created into the db.
+	 * If users are specified as participants of the meeting, they are ignored
+	 *  
+	 */
 	public Meeting createMeeting(Meeting m) {
 		latLngRepository.save(m.getLatLng());
 		

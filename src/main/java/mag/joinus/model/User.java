@@ -18,6 +18,9 @@ public class User {
 	@Id
 	@Column(name = "phone")
 	private String phone;
+
+	@Column(name = "name")
+	private String name;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
@@ -35,11 +38,16 @@ public class User {
 	@ManyToMany(mappedBy = "participants")
 	private List<Meeting> meetingsAsParticipant;
 
-
-	@Column(name = "name")
-	private String name;
-
 	public User() {
+	}
+	
+	public User(String phone) {
+		this.phone = phone;
+	}
+	
+	public User(String phone, String name){
+		this.phone=phone;
+		this.name=name;
 	}
 
 	public List<UserLocation> getLocations() {
