@@ -48,16 +48,34 @@ public class TestCreateMeeting {
 	
 	@Test
 	/* 
-	 * Test with unknown user: Alfredo is an unknown user, i.e. it's not present into the database.
-	 * Expected behavior is that Alfredo is saved to the database 
+	 * Test with unknown user (i.e. not present into the database), whose name is not specified.
+	 * Expected behavior is that the user is saved to the database with "noname"
 	 */
 	public void createMeeting2(){
-		pizzaAtSorbillo.getGuests().add(TestUtil.alfredo);
+		pizzaAtSorbillo.getGuests().add(new User("0000000002"));
 		
 		joinusService.createMeeting(pizzaAtSorbillo);
 		
-		User u = userRepository.findOne("3201424344");
+		User u = userRepository.findOne("0000000002");
 		Assert.assertNotNull(u);
+		Assert.assertEquals("noname",u.getName());
+	}
+	
+	@Test
+	/* 
+	 * Test with unknown user (i.e. not present into the database), whose name is specified.
+	 * Expected behavior is that the user is saved to the database with the specified name
+	 */
+	public void createMeeting3(){
+		User alfredo = new User("0000000003");
+		alfredo.setName("alfredino");
+		pizzaAtSorbillo.getGuests().add(alfredo);
+		
+		joinusService.createMeeting(pizzaAtSorbillo);
+		
+		User u = userRepository.findOne("0000000003");
+		Assert.assertNotNull(u);
+		Assert.assertEquals("alfredino",u.getName());
 	}
 
 }

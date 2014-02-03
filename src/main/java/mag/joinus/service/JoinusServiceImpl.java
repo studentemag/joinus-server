@@ -114,13 +114,19 @@ public class JoinusServiceImpl implements JoinusService {
 		latLngRepository.save(m.getLatLng());
 		
 		for (User u : m.getGuests()){
-			if ( !userRepository.exists(u.getPhone()) )
+			if ( !userRepository.exists(u.getPhone()) ) {
+				if (u.getName() == null)
+					u.setName("noname");
 				userRepository.save(u);
+			}
 		}
 		
 		User u =m.getMc();
-		if ( !userRepository.exists(u.getPhone()) )
+		if ( !userRepository.exists(u.getPhone()) ) {
+			if (u.getName() == null)
+				u.setName("noname");
 			userRepository.save(u);
+		}
 		
 		Meeting createdM = meetingRepository.save(m);
 		return createdM;
