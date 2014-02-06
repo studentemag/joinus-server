@@ -1,7 +1,5 @@
 package mag;
 
-import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.H2;
-
 import javax.sql.DataSource;
 
 import org.springframework.boot.SpringApplication;
@@ -10,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -23,34 +21,43 @@ import org.springframework.transaction.PlatformTransactionManager;
 @EnableJpaRepositories
 @ComponentScan
 public class Application {
-	@Bean
-	public DataSource dataSource() {
-		return new EmbeddedDatabaseBuilder().setType(H2).build();
-	}
+	private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
+	private static final String PROPERTY_NAME_DATABASE_PASSWORD = "joinus";
+	private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/joinus";
+	private static final String PROPERTY_NAME_DATABASE_USERNAME = "joinus";
 
-	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-			DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
-		LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
-		lef.setDataSource(dataSource);
-		lef.setJpaVendorAdapter(jpaVendorAdapter);
-		lef.setPackagesToScan("mag.joinus.repository.springdatajpa");
-		return lef;
-	}
+    @Bean
+    public DataSource dataSource() {
+    	DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    	dataSource.setDriverClassName(PROPERTY_NAME_DATABASE_DRIVER);
+    	dataSource.setUrl(PROPERTY_NAME_DATABASE_URL);
+    	dataSource.setUsername(PROPERTY_NAME_DATABASE_USERNAME);
+    	dataSource.setPassword(PROPERTY_NAME_DATABASE_PASSWORD);
+    	return dataSource;
+    }
 
-	@Bean
-	public JpaVendorAdapter jpaVendorAdapter() {
-		HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
-		hibernateJpaVendorAdapter.setShowSql(true);
-		hibernateJpaVendorAdapter.setGenerateDdl(true);
-		hibernateJpaVendorAdapter.setDatabase(Database.H2);
-		return hibernateJpaVendorAdapter;
-	}
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
+        LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
+        lef.setDataSource(dataSource);
+        lef.setJpaVendorAdapter(jpaVendorAdapter);
+        lef.setPackagesToScan("mag.joinus.repository.springdatajpa");
+        return lef;
+    }
 
-	@Bean
-	public PlatformTransactionManager transactionManager() {
-		return new JpaTransactionManager();
-	}
+    @Bean
+    public JpaVendorAdapter jpaVendorAdapter() {
+        HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
+        hibernateJpaVendorAdapter.setShowSql(true);
+        hibernateJpaVendorAdapter.setGenerateDdl(true);
+        hibernateJpaVendorAdapter.setDatabase(Database.MYSQL);
+        return hibernateJpaVendorAdapter;
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        return new JpaTransactionManager();
+    }
 	
 	
     public static void main(String[] args) {
